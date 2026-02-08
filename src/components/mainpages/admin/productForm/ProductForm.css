@@ -1,0 +1,154 @@
+/* ===== Product Form Container ===== */
+.product-form {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 32px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ===== Heading ===== */
+.product-form h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #111827;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 12px;
+}
+
+/* ===== Grid Layout ===== */
+.product-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* ===== Full Width Fields ===== */
+.product-form .full-width {
+  grid-column: span 2;
+}
+
+/* ===== Labels ===== */
+.product-form label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+/* ===== Inputs & Select ===== */
+.product-form input,
+.product-form textarea,
+.product-form select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  font-size: 14px;
+  color: #111827;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.product-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* ===== Focus State ===== */
+.product-form input:focus,
+.product-form textarea:focus,
+.product-form select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* ===== Image Preview ===== */
+.product-image-preview {
+  margin-top: 12px;
+  width: 160px;
+  height: 160px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid #e5e7eb;
+}
+
+/* ===== Buttons Wrapper ===== */
+.product-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+/* ===== Primary Button ===== */
+.product-form button {
+  padding: 12px 22px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* ===== Save Button ===== */
+.product-form .btn-primary {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.product-form .btn-primary:hover {
+  background: #1e40af;
+}
+
+/* ===== Secondary Button ===== */
+.product-form .btn-secondary {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.product-form .btn-secondary:hover {
+  background: #e5e7eb;
+}
+
+/* ===== Error Text ===== */
+.product-form .error-text {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #dc2626;
+}
+
+/* ===== Disabled ===== */
+.product-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .product-form {
+    padding: 24px;
+  }
+
+  .product-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-form .full-width {
+    grid-column: span 1;
+  }
+
+  .product-form-actions {
+    flex-direction: column;
+  }
+
+  .product-form button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,75 @@
+.profile-page {
+  max-width: 420px;
+  margin: 60px auto;
+  padding: 25px 30px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.profile-page h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #212121;
+}
+
+.profile-page label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #555;
+}
+
+.profile-page input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 18px;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+}
+
+.profile-page input:focus {
+  border-color: #2874f0; /* Flipkart blue */
+}
+
+.profile-page button {
+  width: 100%;
+  padding: 11px;
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.profile-page button:first-of-type {
+  background: #2874f0;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.profile-page button:first-of-type:hover {
+  background: #1f5ed9;
+}
+
+.logout-btn {
+  background: #fff;
+  color: #d32f2f;
+  border: 1px solid #d32f2f;
+}
+
+.logout-btn:hover {
+  background: #d32f2f;
+  color: #fff;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+  .profile-page {
+    margin: 30px 15px;
+    padding: 20px;
+  }
+}

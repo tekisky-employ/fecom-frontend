@@ -1,0 +1,148 @@
+/* header{
+    min-height: 70px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+
+header.logo{
+    flex:1;
+
+}
+
+header a{
+    text-transform: uppercase;
+    color: black;
+}
+header ul li{
+    display: inline-block;
+    opacity: 0.7;
+    padding: 0 20px;
+}
+header ul li:hover{
+    opacity: 1;
+}
+.menu{
+    display: none;
+}
+.cart-icon{
+    position: relative;
+}
+.cart-icon span{
+    background: crimson;
+    border-radius: 20px;
+    color: white;
+    position: absolute;
+    top:-10px;
+    right: -10px;
+    padding: 5px 7px;
+    font-size: 10px;
+}
+
+ */
+
+ /* HEADER BASE */
+.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 32px;
+  background: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* LOGO */
+.logo h1 a {
+  text-decoration: none;
+  color: #2874f0;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* NAV LINKS */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  list-style: none;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+}
+
+.nav-links li a:hover {
+  color: #2874f0;
+}
+
+/* SEARCH */
+.search-item {
+  min-width: 260px;
+}
+
+/* RIGHT SECTION */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* CART ICON */
+.cart-icon {
+  position: relative;
+}
+
+.cart-icon span {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #ff6161;
+  color: #fff;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+.cart-icon a {
+  color: #333;
+}
+
+/* PROFILE ICON */
+.profile-icon {
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.profile-icon:hover {
+  color: #2874f0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .main-header {
+    padding: 10px 16px;
+  }
+
+  .nav-links {
+    gap: 12px;
+  }
+
+  .search-item {
+    display: none;
+  }
+
+  .logo h1 a {
+    font-size: 18px;
+  }
+}

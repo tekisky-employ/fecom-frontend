@@ -1,0 +1,19 @@
+.create-product {
+  max-width: 600px;
+  margin: auto;
+}
+
+.create-product input,
+.create-product textarea,
+.create-product select {
+  width: 100%;
+  margin: 10px 0;
+  padding: 8px;
+}
+
+.create-product button {
+  background: #111;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}

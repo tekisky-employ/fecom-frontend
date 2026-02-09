@@ -4,7 +4,7 @@ import "./Product.css";
 import ProductList from "../utils/productLists/ProductList";
 import HomeSlider from "../utils/slider/HomeSlider";
 import CategoryBar from "../utils/categories/CategoryBar";
-import Pagination from "../../pagination/Pagination";
+import Pagination from "../../pagination/_tmp";
 
 function Product() {
   const state = useContext(GlobalState);

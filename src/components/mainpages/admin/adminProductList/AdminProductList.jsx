@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./AdminProductList.css";
 import GlobalState from "../../../../GlobalState";
 import authApi from "../../../../api/authApi";
-import Pagination from "../../../pagination/Pagination";
+import Pagination from "../../../pagination/_tmp";
 
 function AdminProductList() {
   const state = useContext(GlobalState);
@@ -16,12 +16,9 @@ function AdminProductList() {
   const deleteProduct = async (id) => {
     if (!window.confirm("Delete this product?")) return;
 
-    await authApi.delete(
-      `/api/products/${id}`,
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      },
-    );
+    await authApi.delete(`/api/products/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
   };
 
   return (

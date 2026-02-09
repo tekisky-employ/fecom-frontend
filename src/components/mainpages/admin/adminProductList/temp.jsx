@@ -3,8 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./AdminProductList.css";
 import GlobalState from "../../../../GlobalState";
-import Pagination from "../../../pagination/pagination";
 import authApi from "../../../../api/authApi";
+import Pagination from "../../../pagination/Pagination";
 
 function AdminProductList() {
   const state = useContext(GlobalState);

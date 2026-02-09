@@ -10,9 +10,12 @@ export const DataProvider = ({ children }) => {
 
   const refreshToken = async () => {
     try {
-      const res = await axios.get("/user/refreshtoken", {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/user/refreshtoken`,
+        {
+          withCredentials: true,
+        },
+      );
       setToken(res.data.accesstoken);
     } catch (error) {
       alert(error.response?.data?.msg || "Login failed");

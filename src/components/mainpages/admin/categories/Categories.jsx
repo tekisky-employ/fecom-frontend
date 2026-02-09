@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import axios from "axios";
 import "./Categories.css";
 import GlobalState from "../../../../GlobalState";
+import authApi from "../../../../api/authApi";
 
 function Category() {
   const state = useContext(GlobalState);
@@ -18,15 +18,15 @@ function Category() {
     e.preventDefault();
     try {
       if (onEdit) {
-        await axios.put(
+        await authApi.put(
           `/api/category/${id}`,
           { name, image },
           { headers: { Authorization: `Bearer ${token}` } },
         );
         alert("Category Updated ✅");
       } else {
-        await axios.post(
-          "/api/category",
+        await authApi.post(
+          `/api/category`,
           { name, image },
           { headers: { Authorization: `Bearer ${token}` } },
         );
@@ -53,9 +53,12 @@ function Category() {
   const deleteCategory = async (id) => {
     if (!window.confirm("Delete this category?")) return;
 
-    await axios.delete(`/api/category/${id}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    await authApi.delete(
+      `/api/category/${id}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      },
+    );
 
     categoriesAPI.getCategories();
   };
@@ -110,94 +113,3 @@ function Category() {
 }
 
 export default Category;
-
-// import React, { useContext, useState } from "react";
-// import axios from "axios";
-// import "./Categories.css";
-// import GlobalState from "../../../../GlobalState";
-
-// function Category() {
-//   const state = useContext(GlobalState);
-//   // const [categories, setCategories] = state.categoriesAPI.categories;
-//   const categoriesAPI = state.categoriesAPI;
-//   const categories = categoriesAPI?.categories?.[0] || [];
-//   const setCategories = categoriesAPI?.categories?.[1];
-//   const [token] = state.token;
-
-//   const [name, setName] = useState("");
-//   const [image, setImage] = useState("");
-//   const [onEdit, setOnEdit] = useState(false);
-//   const [id, setId] = useState("");
-
-//   const createCategory = async (e) => {
-//     e.preventDefault();
-//     try {
-//       await axios.post(
-//         "/api/category",
-//         { name, image },
-//         { headers: { Authorization: `Bearer ${token}` } },
-//       );
-
-//       await categoriesAPI.getCategories(); // ✅ real data reload
-
-//       setName("");
-//       alert("Category Created");
-//     } catch (err) {
-//       alert(err.response?.data?.msg || "Error");
-//       console.log(err);
-//     }
-//   };
-
-//   const deleteCategory = async (id) => {
-//     if (!window.confirm("Delete this category?")) return;
-
-//     await axios.delete(`/api/category/${id}`, {
-//       headers: { Authorization: token },
-//     });
-
-//     setCategories(categories.filter((c) => c._id !== id));
-//   };
-
-//   const editCategory = (cat) => {
-//     setId(cat._id);
-//     setName(cat.name);
-//     setImage(cat.image);
-//     setOnEdit(true);
-//   };
-
-//   return (
-//     <div className="category">
-//       <h2>Categories</h2>
-
-//       <form onSubmit={createCategory}>
-//         <input
-//           type="text"
-//           placeholder="Category name"
-//           value={name}
-//           onChange={(e) => setName(e.target.value)}
-//           required
-//         />
-//         <input
-//           type="text"
-//           placeholder="Image URL"
-//           value={image}
-//           onChange={(e) => setImage(e.target.value)}
-//           required
-//         />
-//         <button type="submit">Create</button>
-//       </form>
-
-//       <div className="category-list">
-//         {Array.isArray(categories) &&
-//           categories.map((cat) => (
-//             <div className="category-row" key={cat._id}>
-//               <span>{cat.name}</span>
-//               <button onClick={() => deleteCategory(cat._id)}>❌</button>
-//             </div>
-//           ))}
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Category;

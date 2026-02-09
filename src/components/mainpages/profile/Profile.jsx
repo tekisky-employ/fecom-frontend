@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import "./Profile.css";
 import GlobalState from "../../../GlobalState";
+import authApi from "../../../api/authApi";
 
 function Profile() {
   const state = useContext(GlobalState);
@@ -16,8 +16,8 @@ function Profile() {
 
   useEffect(() => {
     if (token) {
-      axios
-        .get("/user/info", {
+      authApi
+        .get(`/user/info`, {
           headers: { Authorization: token },
         })
         .then((res) =>
@@ -35,8 +35,8 @@ function Profile() {
 
   const updateProfile = async () => {
     try {
-      await axios.put(
-        "/user/profile",
+      await authApi.put(
+        `/user/profile`,
         {
           name: user.name,
           email: user.email,
@@ -55,7 +55,7 @@ function Profile() {
   };
 
   const logoutUser = async () => {
-    await axios.get("/user/logout");
+    await authApi.get(`/user/logout`);
     localStorage.clear();
     setIsLogged(false);
     window.location.href = "/login";

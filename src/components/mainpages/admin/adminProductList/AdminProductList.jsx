@@ -4,34 +4,24 @@ import { Link } from "react-router-dom";
 import "./AdminProductList.css";
 import GlobalState from "../../../../GlobalState";
 import Pagination from "../../../pagination/pagination";
+import authApi from "../../../../api/authApi";
 
 function AdminProductList() {
   const state = useContext(GlobalState);
-  // const [products, setProducts] = useState([]);
   const [token] = state.token;
   const [page, setPage] = state.productAPI.page;
   const [total] = state.productAPI.total;
   const [products] = state.productAPI.products;
 
-  //   const [products, setProducts] = useState([]);
-
-  // const fetchProducts = async () => {
-  //   const res = await axios.get("/api/products");
-  //   setProducts(res.data.data);
-  // };
-
-  // useEffect(() => {
-  //   fetchProducts();
-  // }, []);
-
   const deleteProduct = async (id) => {
     if (!window.confirm("Delete this product?")) return;
 
-    await axios.delete(`/api/products/${id}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
-    // setProducts(products.filter((p) => p._id !== id));
+    await authApi.delete(
+      `/api/products/${id}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      },
+    );
   };
 
   return (

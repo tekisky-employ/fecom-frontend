@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import "./ProductForm.css";
 import GlobalState from "../../../../GlobalState";
+import authApi from "../../../../api/authApi";
 
 const initialState = {
   product_id: "",
@@ -30,7 +30,9 @@ function ProductForm({ isEdit = false, productId = null }) {
     if (isEdit && productId) {
       const fetchProduct = async () => {
         try {
-          const res = await axios.get(`/api/products/${productId}`);
+          const res = await authApi.get(
+            `/api/products/${productId}`,
+          );
           setProduct({
             product_id: res.data.product_id,
             title: res.data.title,
@@ -70,9 +72,13 @@ function ProductForm({ isEdit = false, productId = null }) {
 
     try {
       setLoading(true);
-      const res = await axios.post("/api/upload", formData, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await authApi.post(
+        `/api/upload`,
+        formData,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
       setImages(res.data);
       setLoading(false);
     } catch (err) {
@@ -93,15 +99,15 @@ function ProductForm({ isEdit = false, productId = null }) {
       setLoading(true);
 
       if (isEdit) {
-        await axios.put(
+        await authApi.put(
           `/api/products/${productId}`,
           { ...product, images },
           { headers: { Authorization: `Bearer ${token}` } },
         );
         alert("Product updated successfully");
       } else {
-        await axios.post(
-          "/api/products",
+        await authApi.post(
+          `/api/products`,
           { ...product, images },
           { headers: { Authorization: `Bearer ${token}` } },
         );

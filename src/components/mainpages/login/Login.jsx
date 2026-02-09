@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import "./Login.css";
 import { useContext } from "react";
 import GlobalState from "../../../GlobalState";
+import publicApi from "../../../api/PublicApi";
 
 function Login() {
   const state = useContext(GlobalState);
@@ -21,7 +21,7 @@ function Login() {
   const loginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/user/login", { ...user });
+      const res = await publicApi.post(`/user/login`, { ...user });
       localStorage.setItem("firstLogin", true);
       localStorage.setItem("token", res.data.accesstoken);
       setToken(res.data.accesstoken);

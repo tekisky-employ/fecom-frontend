@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
-import axios from "axios";
 import GlobalState from "../../../GlobalState";
 import "./History.css";
+import authApi from "../../../api/authApi";
 
 export const History = () => {
   const state = useContext(GlobalState);
@@ -11,7 +11,7 @@ export const History = () => {
   useEffect(() => {
     if (token) {
       const getHistory = async () => {
-        const res = await axios.get("/api/history", {
+        const res = await authApi.get(`/api/history`, {
           headers: { Authorization: token },
         });
         setOrders(res.data);

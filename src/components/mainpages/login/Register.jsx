@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import "./Register.css";
+import publicApi from "../../../api/PublicApi";
 
 function Register() {
   const [user, setUser] = useState({
@@ -18,7 +18,9 @@ function Register() {
   const registerSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/user/register", { ...user });
+      await publicApi.post(`/user/register`, {
+        ...user,
+      });
       localStorage.setItem("firstRegister", true);
       window.location.href = "/login";
     } catch (error) {

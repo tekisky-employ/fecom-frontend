@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import "./AdminOrders.css";
 import GlobalState from "../../../GlobalState";
+import authApi from "../../../api/authApi";
 
 const AdminOrders = () => {
   const state = useContext(GlobalState);
@@ -16,9 +16,12 @@ const AdminOrders = () => {
   // ✅ GET ALL ORDERS (ADMIN)
   const getAllOrders = async () => {
     try {
-      const res = await axios.get("/api/order", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await authApi.get(
+        `/api/order`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
       setOrders(res.data);
     } catch (err) {
       alert(err.response?.data?.msg || "Cannot load orders");
@@ -28,7 +31,7 @@ const AdminOrders = () => {
   // ✅ UPDATE ORDER STATUS
   const updateStatus = async (id, status) => {
     try {
-      await axios.patch(
+      await authApi.patch(
         `/api/order/${id}`,
         { status },
         { headers: { Authorization: `Bearer ${token}` } },

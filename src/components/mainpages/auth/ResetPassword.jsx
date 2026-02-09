@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import authApi from "../../../api/authApi";
 
 function ResetPassword() {
   const { token } = useParams();
@@ -9,7 +9,10 @@ function ResetPassword() {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`/user/reset-password/${token}`, { password });
+      await authApi.put(
+        `/user/reset-password/${token}`,
+        { password },
+      );
       alert("Password updated successfully");
       window.location.href = "/login";
     } catch (err) {

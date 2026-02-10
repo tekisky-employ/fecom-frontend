@@ -1,30 +1,42 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import GlobalState from "../../../../GlobalState";
+import publicApi from "../../../../api/publicApi";
 import "./DetailProduct.css";
 
 function DetailProduct() {
   const { id } = useParams();
   const navigate = useNavigate();
   const state = useContext(GlobalState);
-
-  const [products] = state.productAPI.products;
-  const addCart = state.userAPI.addCart; // ✅ IMPORTANT
+  const addCart = state.userAPI.addCart;
 
   const [detailProduct, setDetailProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (id && products.length > 0) {
-      const found = products.find((p) => p._id === id);
-      setDetailProduct(found);
-    }
-  }, [id, products]);
+    const getProduct = async () => {
+      try {
+        const res = await publicApi.get(`/api/products/${id}`);
+        setDetailProduct(res.data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  if (!detailProduct) return <h2>Loading...</h2>;
+    getProduct();
+  }, [id]);
+
+  if (loading) return <h2>Loading...</h2>;
+  if (!detailProduct) return <h2>Product not found</h2>;
 
   return (
     <div className="detail">
-      <img src={detailProduct.images.url} alt={detailProduct.title} />
+      <img
+        src={detailProduct.images?.url || "/no-image.png"}
+        alt={detailProduct.title}
+      />
 
       <div className="box_detail">
         <div className="row">
@@ -37,7 +49,6 @@ function DetailProduct() {
         <p>{detailProduct.content}</p>
         <p>Sold: {detailProduct.sold}</p>
 
-        {/* 🔥 BUY NOW */}
         <button
           className="cart"
           onClick={() => {

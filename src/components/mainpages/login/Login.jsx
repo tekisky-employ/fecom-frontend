@@ -23,7 +23,7 @@ function Login() {
     try {
       const res = await publicApi.post(`/user/login`, { ...user });
       localStorage.setItem("firstLogin", true);
-      localStorage.setItem("token", res.data.accesstoken);
+      localStorage.setItem("accessToken", res.data.accesstoken);
       setToken(res.data.accesstoken);
 
       if (res.data.user.role === 1) {
